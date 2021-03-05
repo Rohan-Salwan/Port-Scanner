@@ -7,6 +7,7 @@ client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # Port scanner will scan all of the ports of the target and tell us about those ports which are opened 
 host="192.168.1.2"
 ports = 65535
+# l is a list of opening ports 
 l=[]
 for e in range(ports):
     dd=(host,e)
