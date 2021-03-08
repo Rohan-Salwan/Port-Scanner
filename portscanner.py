@@ -5,19 +5,25 @@ import socket
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # HOST IS OUR TARGET
 # Port scanner will scan all of the ports of the target and tell us about those ports which are opened 
-host="192.168.1.2"
-ports = 65535
-# l is a list of opening ports 
-l=[]
-for e in range(ports):
+print("Enter target IP address or domain name down below")
+host=input()
+print("Enter number of ports below which you want to scan")
+while 0<1:    
+    try:
+        ports_range=int(input())
+        break
+    except:
+        print("invalid input")
+opened_ports_list=[]
+for e in range(ports_range):
     dd=(host,e)
     try:
         client.connect(dd)
-        l.append(e)
-        print("port opennnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+        opened_ports_list.append(e)
+        print("port opened")
     except:
         print("port closed")
-print(l)
+print(opened_ports_list)
 print("opened ports")
 
 
