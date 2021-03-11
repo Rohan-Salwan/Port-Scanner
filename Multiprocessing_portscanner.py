@@ -35,7 +35,7 @@ try:
 except:
     print("time.time module error")
 
-# Main function will create a pool of several processes and also it will start whole processes parallel.
+# Main function will create a pool of several processes and also it will start whole processes parallelly.
 def main(starting,ending):
     with Pool(processes=500) as pool:
         pool.map(ps,range(starting,ending))

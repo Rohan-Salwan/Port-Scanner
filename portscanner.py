@@ -8,7 +8,7 @@ try:
 except:
     print("something wrong with the socket library")
 # HOST IS OUR TARGET
-# Port scanner will scan all of the ports of the target and tell us about those ports which are opened 
+# Port scanner will scan all of the ports of the target and tell us about those ports which are opened. 
 print("Enter target IP address or domain name down below")
 host=input()
 print("Enter ports range down below which you want to scan")

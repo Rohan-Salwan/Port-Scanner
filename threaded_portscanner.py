@@ -39,7 +39,7 @@ def threader():
         ps(work)
         q.task_done()
 
-# making a queue object and using it to store work for workers and threads are playing role of workers and threads are  going to build by threading.thread
+# making a queue object and using it to store work for workers and threads are playing role of workers and threads are  going to build by threading.thread.
 start=time.time()
 q=Queue()
 for work in range(starting_port,ending_port):
