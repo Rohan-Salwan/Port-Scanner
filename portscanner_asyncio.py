@@ -37,6 +37,7 @@ async def psmain(port_range):
         await asyncio.wait([task1,task2])
         port+=1
 
+# using time library to calculate the time of port scanning process.
 start = time.time()
 # Event loop is going to create with the help of asyncio library method (get_event_loop())
 # and run_untill_complete method will run the event loop untill its completion.
