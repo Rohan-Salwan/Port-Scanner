@@ -11,7 +11,13 @@ host=input()
 print("enter port range down below")
 while 0<1:
     try:
-        ports=int(input())
+        starting_port=int(input("Enter firstport of port range"))
+        break
+    except:
+        print("invalid input")
+while 0<1:
+    try:
+        ending_port=int(input("Enter lastport of port range"))
         break
     except:
         print("invalid input")
@@ -36,7 +42,7 @@ def threader():
 # making a queue object and using it to store work for workers and threads are playing role of workers and threads are  going to build by threading.thread
 start=time.time()
 q=Queue()
-for work in range(1,ports):
+for work in range(starting_port,ending_port):
     q.put(work)
 
 print("wanna enhance port scanner speed so type no of threads below")
@@ -46,7 +52,7 @@ while 0<1:
         break
     except:
         print("invalid input")
-for i in range(threads):
+for thread in range(threads):
     t=threading.Thread(target=threader)
     t.daemon=True
     t.start()

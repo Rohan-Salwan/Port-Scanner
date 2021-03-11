@@ -11,17 +11,23 @@ except:
 # Port scanner will scan all of the ports of the target and tell us about those ports which are opened 
 print("Enter target IP address or domain name down below")
 host=input()
-print("Enter number of ports below which you want to scan")
+print("Enter ports range down below which you want to scan")
+while 0<1:
+    try:
+        starting_port=int(input("Enter firstport of port range"))
+        break
+    except:
+        print("invalid input")
 while 0<1:    
     try:
-        ports_range=int(input())
+        ending_port=int(input("Enter lastport of port range"))
         break
     except:
         print("invalid input")
 opened_ports_list=[]
 start=time.time()
-for e in range(ports_range):
-    dd=(host,e)
+for port in range(starting_port,ending_port):
+    dd=(host,port)
     try:
         client.connect(dd)
         opened_ports_list.append(e)
