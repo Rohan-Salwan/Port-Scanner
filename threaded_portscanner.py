@@ -24,7 +24,6 @@ def ps(port):
             print("port",port,"is open")
         con.close()
     except:
-        print(port,"port is closed")
         pass
 # In threader function thread is getting a work from queue and assigning it to ps(portscanner) function and all threads going to do this process untill the queue's empty. 
 
@@ -40,7 +39,14 @@ q=Queue()
 for work in range(1,ports):
     q.put(work)
 
-for i in range(50):
+print("wanna enhance port scanner speed so type no of threads below")
+while 0<1:
+    try:
+        threads=int(input())
+        break
+    except:
+        print("invalid input")
+for i in range(threads):
     t=threading.Thread(target=threader)
     t.daemon=True
     t.start()
