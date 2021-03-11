@@ -21,7 +21,7 @@ while 0<1:
         break
     except:
         print("invalid input")
-# making socket with the help of socket library and trying to connect with server
+# Making socket with the help of socket library and trying to connect with server
 def ps(port):
     client=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
@@ -39,9 +39,16 @@ def threader():
         ps(work)
         q.task_done()
 
-# making a queue object and using it to store work for workers and threads are playing role of workers and threads are  going to build by threading.thread.
-start=time.time()
-q=Queue()
+# Making a queue object and using it to store work for workers and threads are playing role of workers and threads are  going to build by threading.thread.
+try:
+    start=time.time()
+except:
+    print("Error occured in time library")
+try:
+    q=Queue()
+except:
+    print("Error occured in queue library")
+
 for work in range(starting_port,ending_port):
     q.put(work)
 
