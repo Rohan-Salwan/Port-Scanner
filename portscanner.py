@@ -2,7 +2,7 @@ import socket
 import time
 
 # PORT SCANNER
-# importing socket library with that we are going to make a socket object with default settings# which will get two arguments first argument AF_INET refers to the address family of ipv4 and # second argument SOCK_STREAM refers  connection oriented tcp protocol. 
+# importing socket library with that we are going to make a socket object with default settings# which will get two arguments first argument AF_INET refers to the address family of ipv4 and # second argument SOCK_STREAM refers  connection oriented tcp protocol 
 try:
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 except:
@@ -25,7 +25,10 @@ while 0<1:
     except:
         print("invalid input")
 opened_ports_list=[]
-start=time.time()
+try:
+    start=time.time()
+except:
+    print("error occured in time library")
 for port in range(starting_port,ending_port):
     dd=(host,port)
     try:
