@@ -27,7 +27,6 @@ def ps(port):
         print(port,"port is opened")
         con.close()
     except:
-        print(port,"port is closed")
         pass
 # Using time library for capturing the whole time of port scanning process.
 try:

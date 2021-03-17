@@ -55,8 +55,13 @@ for work in range(starting_port,ending_port):
 print("wanna enhance port scanner speed so type no of threads below")
 while 0<1:
     try:
+        print("Maximum threads limit 1000")
+        print("Enter thread count below")
         threads=int(input())
-        break
+        if threads >1000:
+            pass
+        else:
+            break
     except:
         print("invalid input")
 for thread in range(threads):
