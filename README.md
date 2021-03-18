@@ -29,6 +29,13 @@ Cores count          6
 Logical processors   12
 System type          64-bit operating system, x64-based processor
 
+# For testing 
+___I scanned 100 ports several times with all four versions of portscanner and recorded average runtime of every version which is represented by bar graph and that is given down below___
+
+
+# Figures represented seconds in the graph
+
+
 ![lit](https://i.ibb.co/VqvR1kC/lit.png)
 
 
