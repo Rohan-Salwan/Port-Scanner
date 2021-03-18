@@ -29,7 +29,7 @@ Cores count          6
 Logical processors   12
 System type          64-bit operating system, x64-based processor
 
-![lit](C:\Users\rohan\Desktop\lit.PNG)
+![lit](https://i.ibb.co/DR7hJjM/lit.png)
 
 
 
