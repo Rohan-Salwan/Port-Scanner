@@ -1,7 +1,7 @@
 # INSPIRATION
 I chose to develop port scanner because nowadays cyberattacks are growing rapidly so with the help of portscanner we can easily scan our network vulnerabilities and afterthat we can secure it from cyberthreats. I used python language to develop this tool and for making this tool more efficient and faster, I used advance concepts of python language such like Concurrency and parallelism which I studied from python documentation.
 
-# 4 versions of portscannner are available
+# 4 Versions of Portscannner are Available
 1. Default portscanner with no modification
 2. Threaded portscanner
 3. Asyncio portscanner
@@ -28,10 +28,10 @@ Cores count          6
 Logical processors   12
 System type          64-bit operating system, x64-based processor
 
-# For testing 
+# For Testing 
 ___I scanned 100 ports several times with all four versions of portscanner and recorded average runtime of every version which is represented by bar graph and that is given down below___
 
-# Testing results
+# Testing Results
 
 
 ___Figures represented seconds in the graph___
