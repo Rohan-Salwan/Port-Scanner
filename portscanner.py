@@ -36,7 +36,7 @@ for port in range(starting_port,ending_port):
         opened_ports_list.append(port)
         print("port opened")
     except:
-        print("port closed")
+        print(port,"port closed")
 print(start-time.time())
 print(opened_ports_list)
 print("opened ports")
