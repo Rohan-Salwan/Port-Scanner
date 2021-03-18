@@ -19,9 +19,8 @@ In this version tool is going to use eventloop and its main feature is that it p
 # ___Multiprocessing portscanner___
 In this version portscanner is going to use all cores of user machine so portscanning will be superquick because all operation is going to run parallely but in threaded version and aysncio version operations are not going to run parallely that is why multiprocessing is more efficient.
 
-# Testing results
 
-___My local machine configuration___
+# My Local Machine Configuration
 
 Processor            Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz 1.61 GHz
 Installed RAM        16.0 GB (15.8 GB usable)
@@ -32,8 +31,10 @@ System type          64-bit operating system, x64-based processor
 # For testing 
 ___I scanned 100 ports several times with all four versions of portscanner and recorded average runtime of every version which is represented by bar graph and that is given down below___
 
+# Testing results
 
-# Figures represented seconds in the graph
+
+___Figures represented seconds in the graph___
 
 
 ![lit](https://i.ibb.co/VqvR1kC/lit.png)
