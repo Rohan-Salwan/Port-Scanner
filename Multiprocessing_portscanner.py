@@ -1,6 +1,9 @@
-import socket
-from multiprocessing import Pool
-import time
+try:
+    import socket
+    from multiprocessing import Pool
+    import time
+except:
+    print("Error occured in modules")
 # MULTIPROCESSING PORT SCANNER
 # getting information of target ip address and port number
 print("Enter target ip address or domain name below")

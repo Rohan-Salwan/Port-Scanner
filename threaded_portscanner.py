@@ -1,7 +1,10 @@
-import threading
-import socket
-from queue import Queue
-import time
+try:    
+    import threading
+    import socket
+    from queue import Queue
+    import time
+except:
+    print("Error occured in modules")
 # Threaded port scanner 
 # with queue data structure and threading library
 # using threading.lock to lock the individual data of thread 

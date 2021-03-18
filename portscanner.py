@@ -1,5 +1,8 @@
-import socket
-import time
+try:
+    import socket
+    import time
+except:
+    print("Error occured in modules")
 
 # PORT SCANNER
 # importing socket library with that we are going to make a socket object with default settings# which will get two arguments first argument AF_INET refers to the address family of ipv4 and # second argument SOCK_STREAM refers  connection oriented tcp protocoil. 

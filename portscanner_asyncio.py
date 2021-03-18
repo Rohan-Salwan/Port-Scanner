@@ -1,6 +1,9 @@
-import socket
-import asyncio
-import time
+try:
+    import socket
+    import asyncio
+    import time
+except:
+    print("Eroor occured in modules")
 # PORT SCANNER ASYNCIO VERSION
 # getting target address and ports information from user.
 print("Enter ip address or domain name down below")
