@@ -43,10 +43,7 @@ def threader():
         q.task_done()
 
 # Making a queue object and using it to store work for workers and threads are playing role of workers and threads are  going to build by threading.thread.
-try:
-    start=time.time()
-except:
-    print("Error occured in time library")
+
 try:
     q=Queue()
 except:
@@ -67,6 +64,11 @@ while 0<1:
             break
     except:
         print("invalid input")
+try:
+    start=time.time()
+except:
+    print("Error occured in time library")
+
 for thread in range(threads):
     t=threading.Thread(target=threader)
     t.daemon=True
