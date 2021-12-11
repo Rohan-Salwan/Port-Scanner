@@ -1,47 +1,85 @@
-try:
-    import socket
-    import time
-except:
-    print("Error occured in modules")
+from loading_modules import loading_modules
 
-# PORT SCANNER
-# importing socket library with that we are going to make a socket object with default settings# which will get two arguments first argument AF_INET refers to the address family of ipv4 and # second argument SOCK_STREAM refers  connection oriented tcp protocoil. 
-try:
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-except:
-    print("something wrong with the socket library")
-# HOST IS OUR TARGET
-# Port scanner will scan all of the ports of the target and tell us about those ports which are opened. 
-print("Enter target IP address or domain name down below")
-host=input()
-print("Enter ports range down below which you want to scan")
-while 0<1:
-    try:
-        starting_port=int(input("Enter firstport of port range"))
-        break
-    except:
-        print("invalid input")
-while 0<1:    
-    try:
-        ending_port=int(input("Enter lastport of port range"))
-        break
-    except:
-        print("invalid input")
-opened_ports_list=[]
-try:
-    start=time.time()
-except:
-    print("error occured in time library")
-for port in range(starting_port,ending_port):
-    dd=(host,port)    
-    try:
-        client.connect(dd)
-        opened_ports_list.append(port)
-        print("port opened")
-    except:
-        print(port,"port closed")
-print(start-time.time())
-print(opened_ports_list)
-print("opened ports")
+# PORT SCANNER Default Version.
 
+class Default_PortSacnner:
 
+    def __init__(self):
+
+        # loading all neccessary modules which is required to start client.
+        self.modules = loading_modules()
+
+        # we are going to make a socket object with default settings which will get two arguments
+        # first argument AF_INET refers to the address family of ipv4 and
+        # # second argument SOCK_STREAM refers  connection oriented tcp protocoil.
+        self.User_Socket = self.Building_Socket()
+
+        # HOST IS OUR TARGET.
+        self.Print_Output(msg = "Please Provide Target IP Address or Domain Name")
+        self.Host = self.Obtaining_UserInput(Type = str)
+
+        # Asking for ports range to user.
+        self.Print_Output(msg = "Please Provide ports range to scan")
+        self.Starting_Port_Range = self.Obtaining_UserInput(Type = int, msg = "Enter StartingPort of Port Range")
+        self.Ending_Port_Range = self.Obtaining_UserInput(Type = int, msg = "Enter LastPort of Port Range")
+
+        # Capturing Starting Time.
+        self.ObservedTime = self.Observe_Time()
+
+        # Port_Scanning method will scan all the ports of the target and will display the ports which are opened and vulnerable.
+        self.Opened_PortsList = self.Port_Scanning(self.User_Socket, self.Host, self.Starting_Port_Range, self.Ending_Port_Range)
+
+        # Actual_TimeTaken_In_Scan variable will store accurate time that have been taken by port scanning process.
+        Actual_TimeTaken_In_Scan = self.ObservedTime - self.modules.time.time()
+
+        # Writing output of Actual_TimeTaken_In_Scan and Opened_PortList on console for user.
+        self.Print_Output(msg = Actual_TimeTaken_In_Scan)
+        self.Print_Output(messages = self.Opened_PortsList)
+
+    # Building_Socket method build User socket and also return User Socket.
+    def Building_Socket(self):
+        try:
+            User_Socket = self.modules.socket.socket(self.modules.socket.AF_INET, self.modules.socket.SOCK_STREAM)
+            return User_Socket
+        except:
+            print("something wrong with the socket library")
+
+    # Getting_UserInput method get information from user according to its Type parameter.
+    def Obtaining_UserInput(self, Type = None, msg = ""):
+        while True:
+            try:
+                User_Info = Type(input(msg))
+                return User_Info
+            except:
+                print('INVALID INPUT')
+
+    # Observe_Time method will record the staritng time of PortScanning process.
+    def Observe_Time(self):
+        try:
+            Time = self.modules.time.time()
+            return Time
+        except:
+            print("error occured in time library")
+
+    # Port_Scanning method will scan Starting_port to Ending_Port range and will return Opened_PortsList.
+    def Port_Scanning(self, sock, Host, Starting_Port, Ending_Port):
+        Opened_PortsList = []
+        for port in range(Starting_Port, Ending_Port):
+            HostAndPort_Tuple = (Host, port)
+            try:
+                sock.connect(HostAndPort_Tuple)
+                Opened_PortsList.append(port)
+                print("port opened")
+            except:
+                print(port,"port closed")
+        return Opened_PortsList
+
+    # Print_Output will print msg and mesaages on console and return None.
+    def Print_Output(self, msg = "", messages=None):
+        if messages:
+            for msg in messages:
+                print(msg)
+        if msg:
+            print(msg)
+
+scanner=Default_PortSacnner()
