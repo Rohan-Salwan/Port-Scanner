@@ -1,4 +1,5 @@
-from loading_modules import loading_modules
+import socket
+import time
 
 # PORT SCANNER Default Version.
 
@@ -6,15 +7,12 @@ class Default_PortSacnner:
 
     def __init__(self):
 
-        # loading all neccessary modules which is required to start client.
-        self.modules = loading_modules()
-
         # we are going to make a socket object with default settings which will get two arguments
         # first argument AF_INET refers to the address family of ipv4 and
         # # second argument SOCK_STREAM refers  connection oriented tcp protocoil.
         self.User_Socket = self.Building_Socket()
 
-        # HOST IS OUR TARGET.
+        # Requesting User to provide TARGET IP for Scanning.
         self.Print_Output(msg = "Please Provide Target IP Address or Domain Name")
         self.Host = self.Obtaining_UserInput(Type = str)
 
@@ -30,7 +28,7 @@ class Default_PortSacnner:
         self.Opened_PortsList = self.Port_Scanning(self.User_Socket, self.Host, self.Starting_Port_Range, self.Ending_Port_Range)
 
         # Actual_TimeTaken_In_Scan variable will store accurate time that have been taken by port scanning process.
-        Actual_TimeTaken_In_Scan = self.ObservedTime - self.modules.time.time()
+        Actual_TimeTaken_In_Scan = self.ObservedTime - time.time()
 
         # Writing output of Actual_TimeTaken_In_Scan and Opened_PortList on console for user.
         self.Print_Output(msg = Actual_TimeTaken_In_Scan)
@@ -39,8 +37,8 @@ class Default_PortSacnner:
     # Building_Socket method build User socket and also return User Socket.
     def Building_Socket(self):
         try:
-            User_Socket = self.modules.socket.socket(self.modules.socket.AF_INET, self.modules.socket.SOCK_STREAM)
-            return User_Socket
+            self.user_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            return self.user_socket
         except:
             print("something wrong with the socket library")
 
@@ -56,23 +54,23 @@ class Default_PortSacnner:
     # Observe_Time method will record the staritng time of PortScanning process.
     def Observe_Time(self):
         try:
-            Time = self.modules.time.time()
+            Time = time.time()
             return Time
         except:
             print("error occured in time library")
 
     # Port_Scanning method will scan Starting_port to Ending_Port range and will return Opened_PortsList.
     def Port_Scanning(self, sock, Host, Starting_Port, Ending_Port):
-        Opened_PortsList = []
+        self.Opened_PortsList = []
         for port in range(Starting_Port, Ending_Port):
             HostAndPort_Tuple = (Host, port)
             try:
                 sock.connect(HostAndPort_Tuple)
-                Opened_PortsList.append(port)
-                print("port opened")
+                self.Opened_PortsList.append(port)
+                print(port,"Port Opened")
             except:
-                print(port,"port closed")
-        return Opened_PortsList
+                print(port,"Port Closed")
+        return self.Opened_PortsList
 
     # Print_Output will print msg and mesaages on console and return None.
     def Print_Output(self, msg = "", messages=None):
