@@ -1,9 +1,8 @@
-import socket
-import time
 from multiprocessing import Pool
+from portscanner import Default_PortSacnner
 
 # MULTIPROCESSING PORT SCANNER
-class Multiprocessing_PortScanner:
+class MultiProcessing_PortScanner(Default_PortSacnner):
 
     def __init__(self):
 
@@ -61,38 +60,3 @@ class Multiprocessing_PortScanner:
                     return Number_of_Processes
             except:
                 self.Print_Output(msg="Invalid Input")
-
-    # Getting_UserInput method get information from user according to its Type parameter.
-    def Obtaining_UserInput(self, Type = None, msg = ""):
-        while True:
-            try:
-                User_Info = Type(input(msg))
-                return User_Info
-            except:
-                print('INVALID INPUT')
-
-    # Print_Output will print msg and mesaages on console and return None.
-    def Print_Output(self, msg = "", messages=None):
-        if messages:
-            for msg in messages:
-                print(msg)
-        if msg:
-            print(msg)
-
-    # Building_Socket method build User socket and also return User Socket.
-    def Building_Socket(self):
-        try:
-            self.user_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            return self.user_socket
-        except:
-            print("something wrong with the socket library")
-
-    # Observe_Time method will record the staritng time of PortScanning process.
-    def Observe_Time(self):
-        try:
-            Time = time.time()
-            return Time
-        except:
-            print("error occured in time library")
-
-scanner=Multiprocessing_PortScanner()

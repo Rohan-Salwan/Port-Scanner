@@ -79,5 +79,3 @@ class Default_PortSacnner:
                 print(msg)
         if msg:
             print(msg)
-
-scanner=Default_PortSacnner()
