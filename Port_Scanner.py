@@ -32,7 +32,7 @@ class Default_PortSacnner:
 
         # Writing output of Actual_TimeTaken_In_Scan and Opened_PortList on console for user.
         self.Print_Output(msg = Actual_TimeTaken_In_Scan)
-        self.Print_Output(messages = self.Opened_PortsList)
+        self.Print_Output(msg = ("Vulnerable_Ports -:",self.Opened_PortsList))
 
     # Building_Socket method build User socket and also return User Socket.
     def Building_Socket(self):

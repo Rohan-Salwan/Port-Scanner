@@ -43,7 +43,7 @@ class MultiThreaded_PortScanner(Default_PortSacnner):
         self.BuildingAndExecution_OF_Threads(self.Thred_Count, Host, self.Queue, self.print_lock)
 
         # Displaying Opened ports of selected Target.
-        self.Print_Output(msg=self.Opened_PortsList)
+        self.Print_Output(msg=("Vulnerable_Ports", self.Opened_PortsList))
 
         # Displaying time taken of entire scanning process.
         self.Print_Output(msg=self.RecordedTime-self.Observe_Time())
