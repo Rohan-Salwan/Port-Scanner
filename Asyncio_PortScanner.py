@@ -23,7 +23,7 @@ class Asynchronous_PortScanner(Default_PortScanner):
         # Initializing asyncio process of portscanner on selected target.
         self.Getting_EventLoop(Starting_Port_Range, Ending_Port_Range, self.host)
 
-        self.Print_Output(msg=("Vulnerable_Ports -:",self.Opened_PortsList))
+        self.Print_Output(msg = ("Vulnerable_Ports -:",self.Opened_PortsList))
 
         # Displaying time taken of entire scanning process.
         self.Print_Output(msg = self.Recorded_Time-self.Observe_Time())
@@ -31,7 +31,7 @@ class Asynchronous_PortScanner(Default_PortScanner):
     # Port_Scanner method will open connection socket which will try to connect with target.
     async def Port_Scanner(self, Host, Port):
         try:
-            await asyncio.wait_for(asyncio.open_connection(Host,Port),timeout=0.01)
+            await asyncio.wait_for(asyncio.open_connection(Host,Port), timeout = 0.01)
             print(Port, "is Opened")
             self.Opened_PortsList.append(Port)
         except:
@@ -49,4 +49,8 @@ class Asynchronous_PortScanner(Default_PortScanner):
         Event_Loop = asyncio.get_event_loop()
         Event_Loop.run_until_complete(asyncio.wait_for(self.RunningSelectedPorts_With_AsyncioPortScanner(FirstPort, LastPort, Target),timeout=None))
 
-
+def core():
+    try:
+        Port_Scanner = Asynchronous_PortScanner()
+    except:
+        print("Error in Asyncio_PortScanner module")

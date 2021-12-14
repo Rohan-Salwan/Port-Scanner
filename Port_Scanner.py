@@ -63,7 +63,7 @@ class Default_PortScanner:
     # Port_Scanning method will scan Starting_port to Ending_Port range and will return Opened_PortsList.
     def Port_Scanning(self, sock, Host, Starting_Port, Ending_Port):
         self.Opened_PortsList = []
-        for port in range(Starting_Port, Ending_Port):
+        for port in range(Starting_Port, Ending_Port+1):
             HostAndPort_Tuple = (Host, port)
             try:
                 sock.connect(HostAndPort_Tuple)
@@ -80,3 +80,9 @@ class Default_PortScanner:
                 print(msg)
         if msg:
             print(msg)
+
+def core():
+    try:
+        Port_Scanner = Default_PortScanner()
+    except:
+        print("Error in Port_Scanner module")

@@ -84,8 +84,8 @@ class MultiThreaded_PortScanner(Default_PortScanner):
     # BuildingAndExecution_OF_Threads method will execute core execution of module.
     def BuildingAndExecution_OF_Threads(self, Threads_Count, Host, queue, Lock):
         for _ in range(Threads_Count):
-            Thread = threading.Thread(target=self.PoppingPortFromQueue_And_InitilizingPortScanner, args=(Host, queue, Lock))
-            Thread.daemon=True
+            Thread = threading.Thread(target=self.PoppingPortFromQueue_And_InitilizingPortScanner, args = (Host, queue, Lock))
+            Thread.daemon = True
             Thread.start()
         self.Queue.join()
 
@@ -108,3 +108,9 @@ class MultiThreaded_PortScanner(Default_PortScanner):
             return Lock
         except:
             self.Print_Output(msg = "Error in threading lock module")
+
+def core():
+    try:
+        Port_Scanner = MultiThreaded_PortScanner()
+    except:
+        print("Error in Multithreaded_PortScanner module")

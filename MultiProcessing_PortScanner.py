@@ -1,5 +1,6 @@
 from multiprocessing import Pool
 from Port_Scanner import Default_PortScanner
+import socket
 
 # MULTIPROCESSING PORT SCANNER
 class MultiProcessing_PortScanner(Default_PortScanner):
@@ -17,9 +18,9 @@ class MultiProcessing_PortScanner(Default_PortScanner):
         Starting_Port_Range = self.Obtaining_UserInput(Type = int, msg = "Please provide StartingPort of Range")
         Ending_Port_Range = self.Obtaining_UserInput(Type = int, msg = "Please provide LastPort of Range")
 
-        self.Print_Output(msg="User can increase the speed of PortScanner by increasing Process count")
+        self.Print_Output(msg = "User can increase the speed of PortScanner by increasing Process count")
 
-        self.Print_Output(msg="User can create maximum 500 processes")
+        self.Print_Output(msg = "User can create maximum 500 processes")
 
         # Requesting user to provide process count which will eventually control the speed of portscanner.
         self.Process_Count = self.MultiProcess_Controller(Type=int)
@@ -35,10 +36,10 @@ class MultiProcessing_PortScanner(Default_PortScanner):
 
     # port_scanner method will create a client socket which will try to connect with server socket.
     def port_scanner(self, port):
-        self.User_Socket = self.Building_Socket()
+        self.User_Socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         HostAndPort_Tuple = (self.host,port)
         try:
-            Connection =self.User_Socket.connect(HostAndPort_Tuple)
+            Connection = self.User_Socket.connect(HostAndPort_Tuple)
             print(port,"Port is Opened")
             Connection.close()
         except:
@@ -50,7 +51,7 @@ class MultiProcessing_PortScanner(Default_PortScanner):
             pool.map(self.port_scanner, range(FirstPort_of_Range, LastPort_of_Range))
 
     # MultiProcess_Controller method will get process count from user eventually its gonna control speed of PortScanner.
-    def MultiProcess_Controller(self, Type =None, msg = ""):
+    def MultiProcess_Controller(self, Type = None, msg = ""):
         while True:
             try:
                 Number_of_Processes = Type(input(msg))
@@ -60,3 +61,8 @@ class MultiProcessing_PortScanner(Default_PortScanner):
                     return Number_of_Processes
             except:
                 self.Print_Output(msg="Invalid Input")
+def core():
+    try:
+        Port_Scanner = MultiProcessing_PortScanner()
+    except:
+        print("Error in MultiProcessingPortScanner module")
