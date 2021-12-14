@@ -1,8 +1,8 @@
 import asyncio
-from portscanner import Default_PortSacnner
+from Port_Scanner import Default_PortScanner
 
 # PORT SCANNER ASYNCHRONOUS VERSION
-class Asynchronous_PortScanner(Default_PortSacnner):
+class Asynchronous_PortScanner(Default_PortScanner):
     def __init__(self):
         self.Print_Output(msg = "Please provide target ip address or domain name below")
 

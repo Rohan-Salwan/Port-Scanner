@@ -1,17 +1,17 @@
 import threading
 from queue import Queue
-from portscanner import Default_PortSacnner
-
+from Port_Scanner import Default_PortScanner
+import socket
 
 # Threaded Port Scanner
-class MultiThreaded_PortScanner(Default_PortSacnner):
+class MultiThreaded_PortScanner(Default_PortScanner):
 
     def __init__(self):
 
         # Preparing threading.Lock to lock data of individual thread.
-        self.print_lock=threading.Lock()
+        self.print_lock = self.Thread_Lock()
 
-        self.Print_Output(msg="Please provide target ip address or domain name below")
+        self.Print_Output(msg = "Please provide target ip address or domain name below")
 
         # Requesting user to provide TARGET IP for scanning.
         Host = self.Obtaining_UserInput(Type=str)
@@ -37,20 +37,20 @@ class MultiThreaded_PortScanner(Default_PortSacnner):
         self.Print_Output(msg="User can create maximum 1000 Threads")
 
         # Requesting user to provide thread count which will eventually control the speed of portscanner.
-        self.Thred_Count = self.MultiThread_Controller(Type=int)
+        self.Thread_Count = self.MultiThread_Controller(Type=int)
 
         # Initializing process of portscanner on selected target.
-        self.BuildingAndExecution_OF_Threads(self.Thred_Count, Host, self.Queue, self.print_lock)
+        self.BuildingAndExecution_OF_Threads(self.Thread_Count, Host, self.Queue, self.print_lock)
 
         # Displaying Opened ports of selected Target.
-        self.Print_Output(msg=("Vulnerable_Ports", self.Opened_PortsList))
+        self.Print_Output(msg = ("Vulnerable_Ports", self.Opened_PortsList))
 
         # Displaying time taken of entire scanning process.
-        self.Print_Output(msg=self.RecordedTime-self.Observe_Time())
+        self.Print_Output(msg = self.RecordedTime-self.Observe_Time())
 
     # port_scanner method will create a client socket which will try to connect with server socket.
     def port_scanner(self, host, port, Lock):
-        self.User_Socket = self.Building_Socket()
+        self.User_Socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         HostAndPort_Tuple = (host,port)
         try:
             connection = self.User_Socket.connect(HostAndPort_Tuple)
@@ -84,13 +84,13 @@ class MultiThreaded_PortScanner(Default_PortSacnner):
     # BuildingAndExecution_OF_Threads method will execute core execution of module.
     def BuildingAndExecution_OF_Threads(self, Threads_Count, Host, queue, Lock):
         for _ in range(Threads_Count):
-            Thread=threading.Thread(target=self.PoppingPortFromQueue_And_InitilizingPortScanner, args=(Host, queue, Lock))
+            Thread = threading.Thread(target=self.PoppingPortFromQueue_And_InitilizingPortScanner, args=(Host, queue, Lock))
             Thread.daemon=True
             Thread.start()
         self.Queue.join()
 
     # MultiThread_Controller method will get thread count from user eventually its gonna control speed of PortScanner.
-    def MultiThread_Controller(self, Type=None, msg=""):
+    def MultiThread_Controller(self, Type = None, msg = ""):
         while True:
             try:
                 Number_of_Threads = Type(input(msg))
@@ -99,4 +99,12 @@ class MultiThreaded_PortScanner(Default_PortSacnner):
                 else:
                     return Number_of_Threads
             except:
-                self.Print_Output(msg="Invalid Input")
+                self.Print_Output(msg = "Invalid Input")
+
+    # Thread_Lock method build lock for threds.
+    def Thread_Lock(self):
+        try:
+            Lock = threading.Lock()
+            return Lock
+        except:
+            self.Print_Output(msg = "Error in threading lock module")

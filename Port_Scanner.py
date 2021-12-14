@@ -3,7 +3,7 @@ import time
 
 # PORT SCANNER Default Version.
 
-class Default_PortSacnner:
+class Default_PortScanner:
 
     def __init__(self):
 
@@ -17,6 +17,7 @@ class Default_PortSacnner:
         self.Host = self.Obtaining_UserInput(Type = str)
 
         # Asking for ports range to user.
+
         self.Print_Output(msg = "Please Provide ports range to scan")
         self.Starting_Port_Range = self.Obtaining_UserInput(Type = int, msg = "Enter StartingPort of Port Range")
         self.Ending_Port_Range = self.Obtaining_UserInput(Type = int, msg = "Enter LastPort of Port Range")

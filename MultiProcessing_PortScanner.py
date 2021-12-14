@@ -1,8 +1,8 @@
 from multiprocessing import Pool
-from portscanner import Default_PortSacnner
+from Port_Scanner import Default_PortScanner
 
 # MULTIPROCESSING PORT SCANNER
-class MultiProcessing_PortScanner(Default_PortSacnner):
+class MultiProcessing_PortScanner(Default_PortScanner):
 
     def __init__(self):
 
